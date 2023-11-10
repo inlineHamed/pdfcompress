@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style></style>
+</head>
+
+<body>
+    <input id="file_input" type="file">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.189/pdf.worker.min.mjs"></script>
+
+    <script>
+        var PDFJS = window['pdfjs-dist/build/pdf'];
+
+        PDFJS.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+        let fileReader = new FileReader();
+        fileReader.onload = function () {
+            let typedarray = new Uint8Array(this.result);
+            let loadingTask = pdfjsLib.getDocument(typedarray);
+
+            loadingTask.promise.then(function (pdf) {
+
+                var canvasdiv = document.getElementById('canvas');
+                var totalPages = pdf.numPages
+                var data = [];
+
+                for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                    pdf.getPage(pageNumber).then(function (page) {
+
+                        var scale = 1.5;
+                        var viewport = page.getViewport({ scale: scale });
+
+                        var canvas = document.createElement('canvas');
+                        canvasdiv.appendChild(canvas);
+
+                        // Prepare canvas using PDF page dimensions
+                        var context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        // Render PDF page into canvas context
+                        var renderContext = { canvasContext: context, viewport: viewport };
+
+                        var renderTask = page.render(renderContext);
+                        renderTask.promise.then(function () {
+                            debugger;
+                            data.push(canvas.toDataURL('image/png'))
+                            console.log(data.length + ' page(s) loaded in data')
+                        });
+                    });
+                }
+
+            }, function (reason) {
+                // PDF loading error
+                console.error(reason);
+            });
+        };
+        fileReader.readAsArrayBuffer(document.getElementById('file_input').files[0]);
+    </script>
+</body>
+
+</html>

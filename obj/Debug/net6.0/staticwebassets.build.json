@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "u0aObM/auQPZ93HIWxLUoFF6zVJ6GGRkxSVxhtGOEfw=",
+  "Source": "pdf",
+  "BasePath": "_content/pdf",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "pdf\\wwwroot",
+      "Source": "pdf",
+      "ContentRoot": "C:\\Users\\Hamed\\Desktop\\pdf\\wwwroot\\",
+      "BasePath": "_content/pdf",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Hamed\\Desktop\\pdf\\wwwroot\\index.html",
+      "SourceId": "pdf",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hamed\\Desktop\\pdf\\wwwroot\\",
+      "BasePath": "_content/pdf",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}
